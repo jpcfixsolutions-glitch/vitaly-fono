@@ -1,0 +1,17 @@
+.btn-configureTimetable {
+  background-color: var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.btn-configureTimetable:hover {
+  background-color: var(--color-primary-hover);
+  border: 1px solid var(--color-primary-hover);
+}
+
+/* Media queries */
+/* Mobile */
+@media (width <=768px) {
+  .btn-configureTimetable {
+    font-size: .85rem;
+  }
+}

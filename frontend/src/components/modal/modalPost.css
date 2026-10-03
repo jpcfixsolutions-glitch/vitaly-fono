@@ -1,0 +1,93 @@
+/* Estilos base para modales de creación (post) */
+.modal-content.modal-post-styled {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.modal-post-styled .modal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: none;
+  padding: 16px 20px 8px 20px;
+}
+
+.modal-post-styled .modal-title {
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.modal-post-styled .modal-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #999;
+}
+
+.modal-post-styled .modal-body {
+  padding: 16px 20px;
+}
+
+.modal-post-styled .modal-footer {
+  padding: 12px 20px 16px 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.modal-post-styled .btn.btn-success {
+  background-color: #cc679c;
+  border-color: #864868;
+}
+
+.modal-post-styled .btn.btn-success:hover {
+  background-color: #864868;
+}
+
+.modal-post-styled .btn.btn-danger {
+  background-color: var(--gray-100);
+  color: #000000;
+  border-color: #4b5563;
+}
+
+.modal-post-styled .btn.btn-danger:hover {
+  background-color: var(--gray-300);
+}
+
+/* -------- Modal específica de Primera Entrevista -------- */
+#postFirstInterviewModal .modal-dialog,
+#updateFirstInterviewModal .modal-dialog {
+  max-width: 70vw;
+  width: 70vw;
+  margin: 1.5rem auto;
+  min-width: 370px;
+}
+
+#postFirstInterviewModal .modal-dialog.modal-dialog-centered,
+#updateFirstInterviewModal .modal-dialog.modal-dialog-centered {
+  align-items: flex-start;
+}
+
+#postFirstInterviewModal .modal-content,
+#updateFirstInterviewModal .modal-content {
+  height: 90vh;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#postFirstInterviewModal .modal-body,
+#updateFirstInterviewModal .modal-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  #postFirstInterviewModal .modal-dialog,
+  #updateFirstInterviewModal .modal-dialog {
+    max-width: 90vw;
+    width: 90vw;
+  }
+}

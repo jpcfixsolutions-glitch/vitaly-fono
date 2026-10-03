@@ -1,0 +1,137 @@
+/* Importar variables del sistema de diseño */
+@import './variables.css';
+
+:root {
+  --bs-font-sans-serif: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --bs-body-font-family: var(--bs-font-sans-serif);
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 375px;
+  min-height: 100vh;
+  background-color: #ffffff;
+
+  font-family: var(--bs-body-font-family);
+  line-height: 1.5;
+  font-weight: var(--font-weight-normal);
+  color: var(--gray-900);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-gutter: stable both-edges;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* Scrollbar global (vertical y horizontal) */
+/* Firefox */
+:root {
+  scrollbar-color: var(--gray-200, #e5e7eb) #ffffff;
+  scrollbar-width: thin;
+}
+
+/* WebKit (Chrome, Edge, Safari, Opera) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--gray-200, #e5e7eb);
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--gray-300, #d1d5db);
+}
+
+/* Ocultar scrollbar del body cuando la modal está abierta (Bootstrap agrega .modal-open al body) */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Selección de texto global */
+/* ::selection {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: var(--color-primary);
+  color: #ffffff;
+} */
+
+/* Estilo de enfoque consistente para inputs/selects/textareas/botones */
+/* input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 103, 156, 0.35);
+  border-color: var(--color-primary);
+} */

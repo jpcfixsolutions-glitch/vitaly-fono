@@ -1,0 +1,20 @@
+.section-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-xl);
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Media queries */
+/* Mobile */
+@media (width <=768px) {
+  .section-icon {
+    width: 32px;
+    height: 32px;
+  }
+}

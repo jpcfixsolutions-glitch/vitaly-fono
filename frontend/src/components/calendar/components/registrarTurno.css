@@ -1,0 +1,85 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Estilos para los radio buttons */
+.form-group input[type="radio"] {
+  margin-right: 0.5rem;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: #cc679c;
+}
+
+.form-group input[type="radio"]+label {
+  display: inline-block;
+  cursor: pointer;
+  font-weight: normal;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+/* Estilos para los inputs */
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  border-color: #cc679c;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(204, 103, 156, 0.25);
+}
+
+/* Para la lista de sugerencias */
+.suggestions-list {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  z-index: 999;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #eee;
+}
+
+
+/* Quitar flechas del input number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+#modalidad-presencial~label,
+#modalidad-virtual~label {
+  margin-bottom: .5rem !important;
+}

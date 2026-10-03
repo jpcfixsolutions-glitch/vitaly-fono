@@ -1,0 +1,71 @@
+.btn-obraSocial {
+  background-color: var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.btn-obraSocial:hover {
+  background-color: var(--color-primary-hover);
+  border: 1px solid var(--color-primary-hover);
+}
+
+.ObraSocialForm .form-group {
+  margin-bottom: 0rem;
+}
+
+.button-icon svg {
+  color: #b92f2f;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.action-btn--deactivate svg,
+.btn-deactivate svg {
+  border-color: #ef4444;
+}
+
+.action-btn--deactivate:hover svg,
+.btn-deactivate:hover svg {
+  color: #ef4444;
+}
+
+.obra-social-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.status-filter-select {
+  padding: .6rem .9rem !important;
+  width: 20.5ch !important;
+}
+
+/* Media queries */
+/* Mobile */
+@media (width <=768px) {
+  .btn-obraSocial {
+    font-size: .85rem;
+  }
+
+  .obra-social-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .obra-social-header button {
+    width: auto;
+
+    margin-bottom: 12px;
+  }
+
+  .obra-social-header select {
+    width: auto;
+    margin-left: 0 !important;
+    width: 20.5ch !important;
+  }
+}

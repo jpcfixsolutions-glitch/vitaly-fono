@@ -1,0 +1,94 @@
+.payment-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.payment-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.payment-detail-container .detail-item {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.icon-container-detail-payment {
+  width: 36px;
+  height: 36px;
+  margin-top: 4px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-100);
+  color: #d97fb0;
+  flex-shrink: 0;
+}
+
+.payment-detail-container .detail-text .label {
+  margin: 0;
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+.payment-detail-container .detail-text .value {
+  margin: 0;
+  font-size: 14px;
+  color: var(--gray-900);
+}
+
+.payment-detail-container .notes-section .notes-box {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  min-height: 60px;
+  background: #fff;
+}
+
+/* Estado (solo para este detalle) */
+.payment-detail-container .detail-item.status {
+  border-left: 4px solid transparent;
+  grid-column: 1 / -1;
+  /* Ocupar todas las columnas de la grilla */
+}
+
+.payment-detail-container .detail-item.status.status-active {
+  border-left-color: #16a34a;
+  /* verde */
+}
+
+.payment-detail-container .detail-item.status.status-inactive {
+  border-left-color: #e11d48;
+  /* rojo */
+}
+
+.payment-detail-container .status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.payment-detail-container .status-badge.status-active {
+  background-color: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+  border-color: rgba(34, 197, 94, 0.25);
+}
+
+.payment-detail-container .status-badge.status-inactive {
+  background-color: rgba(244, 63, 94, 0.12);
+  color: #e11d48;
+  border-color: rgba(244, 63, 94, 0.25);
+}

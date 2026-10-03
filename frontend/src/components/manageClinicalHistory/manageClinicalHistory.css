@@ -1,0 +1,1442 @@
+/* Estilos nativos CSS para Historias Clínicas, basados en variables.css */
+
+/* Layout Principal */
+.clinical-history-layout {
+  display: flex;
+  /* Alto calculado para restar el header y márgenes (aprox) */
+  height: calc(100vh - 200px);
+  gap: var(--space-6, 1.5rem);
+  min-height: 600px;
+}
+
+/* Ajustes responsivos del layout principal */
+@media (max-width: 1024px) {
+  .patient-list-panel {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .clinical-history-layout {
+    flex-direction: column;
+    height: auto;
+    min-height: initial;
+    gap: var(--space-4, 1rem);
+  }
+
+  .patient-list-panel {
+    width: 100%;
+    min-width: 100%;
+    max-height: 42vh;
+    min-height: 220px;
+    overflow-y: auto;
+  }
+
+  .timeline-panel {
+    width: 100%;
+    max-height: 52vh;
+    overflow: auto;
+  }
+
+  .timeline-header {
+    display: flex;
+    flex-direction: column;
+    padding: 0
+  }
+
+  .timeline-content {
+    padding: 1rem;
+  }
+
+  .timeline-prompt-content {
+    padding: 1rem;
+  }
+
+  /* Mostrar siempre el botón de editar en mobile/tablet */
+  .timeline-item-edit-btn {
+    opacity: 1;
+    transition: none;
+  }
+
+  /* Desactivar hover visual en mobile/tablet */
+  .timeline-item-edit-btn:hover {
+    background-color: transparent;
+    color: #3b82f6;
+  }
+
+  .timeline-item-body {
+    transition: none;
+  }
+
+  
+}
+
+@media (max-width: 480px) {
+  .patient-list-panel {
+    min-width: 100%;
+    max-height: 45vh;
+    min-height: 200px;
+  }
+
+  .timeline-header {
+    padding: 1rem !important
+  }
+
+  .timeline-header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .timeline-header-actions {
+    width: 100%;
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .timeline-header-actions .timeline-action-btn,
+  .timeline-header-actions .btn-interview {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .timeline-panel {
+    max-height: 50vh;
+  }
+
+  /* Reorganización móvil: fecha arriba; hora+tag+botón abajo */
+  .timeline-item-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .timeline-item-meta-stack {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.5rem 0.75rem;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 0.85rem;
+  }
+
+  .timeline-item-meta-item.date {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .timeline-item-meta-item.time {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  .timeline-item-edit-btn {
+    grid-row: 1;
+    grid-column: 3;
+    justify-self: end;
+    margin-left: auto;
+  }
+
+  .timeline-item-tag {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 0.25rem;
+  }
+
+  .timeline-item-edit-btn {
+    margin-left: auto;
+    opacity: 1;
+    transition: none;
+  }
+
+  .timeline-item-edit-btn:hover {
+    background-color: transparent;
+    color: #3b82f6;
+  }
+
+  .timeline-item-body {
+    transition: none;
+  }
+
+  
+}
+
+/* Panel Izquierdo (Lista de Pacientes) */
+.patient-list-panel {
+  width: 320px;
+  /* w-80 */
+  background-color: #ffffff;
+  border-radius: var(--radius-lg, 0.625rem);
+  border: 1px solid var(--gray-200, #e5e7eb);
+  display: flex;
+  flex-direction: column;
+}
+
+.patient-list-header {
+  padding: var(--space-4, 1rem);
+  border-bottom: 1px solid var(--gray-200, #e5e7eb);
+}
+
+.patient-list-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3, 0.75rem);
+  margin-bottom: var(--space-4, 1rem);
+}
+
+.patient-list-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  margin: 0;
+}
+
+.patient-list-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-primary, #cc679c);
+}
+
+.patient-list-title h3 {
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--gray-900, #111827);
+  margin: 0;
+  font-size: var(--font-size-base, 1rem);
+}
+
+.patient-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  min-width: 22px;
+  padding: 0 8px;
+  border-radius: 9999px;
+  background-color: rgba(204, 103, 156, 0.12);
+  /* primary soft */
+  color: var(--color-primary, #cc679c);
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.patient-search-wrapper {
+  position: relative;
+}
+
+.patient-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  /* 12px */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--gray-400, #9ca3af);
+}
+
+.patient-search-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem 0.5rem 2.5rem;
+  /* pl-10 */
+  border-radius: var(--radius-md, 0.5rem);
+  border: 1px solid var(--gray-200, #e5e7eb);
+  background-color: var(--gray-50, #f9fafb);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.patient-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary, #cc679c);
+  box-shadow: 0 0 0 2px rgba(204, 103, 156, 0.2);
+}
+
+.patient-status-filter {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #ffffff;
+  border: 1px solid var(--gray-200, #e5e7eb);
+  border-radius: var(--radius-md, 0.5rem);
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--gray-700, #374151);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7L10 12L15 7' stroke='%239CA3AF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 18px 18px;
+  cursor: pointer;
+}
+
+.patient-status-filter:focus {
+  outline: none;
+  border-color: var(--color-primary, #cc679c);
+  box-shadow: 0 0 0 2px rgba(204, 103, 156, 0.2);
+}
+
+.patient-list-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-2, 0.5rem);
+}
+
+/* Tarjeta de Paciente en la lista */
+.patient-card {
+  position: relative;
+  padding: 0.75rem;
+  /* p-3 */
+  border-radius: var(--radius-lg, 0.625rem);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: var(--space-2, 0.5rem);
+  border: 1px solid transparent;
+  border-left-width: 4px;
+}
+
+.patient-card:hover {
+  background-color: var(--gray-50, #f9fafb);
+}
+
+.patient-card.disabled,
+.patient-card.disabled * {
+  cursor: not-allowed !important;
+}
+
+.patient-card.selected {
+  /* Gradiente de los colores corporativos con opacidad */
+  background: linear-gradient(to right,
+      rgba(204, 103, 156, 0.05),
+      /* primary */
+      rgba(93, 184, 209, 0.05),
+      /* secondary */
+      rgba(227, 172, 77, 0.05)
+      /* tertiary */
+    );
+  border-left-color: var(--color-primary, #cc679c);
+}
+
+.patient-card-interview-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm, 0.375rem);
+  color: var(--color-secondary, #5db8d1);
+  background-color: transparent;
+}
+
+.patient-card-interview-btn:hover {
+  background-color: rgba(93, 184, 209, 0.1);
+  color: var(--color-secondary, #5db8d1);
+}
+
+.patient-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.patient-card-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  /* rounded-full */
+  background-color: var(--color-primary, #cc679c);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  flex-shrink: 0;
+}
+
+.patient-card-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.patient-card-name {
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--gray-900, #111827);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.patient-card-age {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--gray-500, #6b7280);
+  margin: 0;
+}
+
+.patient-card-details {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--gray-500, #6b7280);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.patient-card-detail-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.patient-card-detail-row span:last-child {
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.patient-card-no-interview {
+  color: var(--color-tertiary, #e3ac4d);
+  font-weight: var(--font-weight-medium, 500);
+  font-size: var(--font-size-xs, 0.75rem);
+  margin-top: 0.25rem;
+}
+
+/* Panel Derecho (Timeline) */
+.timeline-panel {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: var(--radius-lg, 0.625rem);
+  border: 1px solid var(--gray-200, #e5e7eb);
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-header {
+  padding: 1.5rem;
+  /* p-6 */
+  border-bottom: 1px solid var(--gray-200, #e5e7eb);
+}
+
+.timeline-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.timeline-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timeline-header h2 {
+  font-size: 1.25rem;
+  /* text-xl */
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--gray-900, #111827);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-header p {
+  color: var(--gray-600, #4b5563);
+  margin: 0;
+}
+
+.timeline-action-btn,
+.btn-interview {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem !important;
+  border-radius: 9999px !important;
+  font-size: var(--font-size-sm, 0.875rem) !important;
+  font-weight: 500 !important;
+  border: 1px solid transparent;
+  line-height: 1.5 !important; /* Igualar line-height con Bootstrap */
+}
+
+.btn-interview {
+  background-color: var(--color-tertiary, #e3ac4d) !important;
+  border-color: var(--color-tertiary, #e3ac4d) !important;
+  color: #fff !important;
+}
+
+.btn-interview:hover {
+  background-color: #ca9a44 !important;
+  /* Darken */
+  border-color: #ca9a44 !important;
+}
+
+.btn-interview:disabled {
+  background-color: var(--gray-300, #d1d5db) !important;
+  color: var(--gray-500, #6b7280) !important;
+  border-color: var(--gray-300, #d1d5db) !important;
+  cursor: not-allowed;
+}
+
+/* Botón de Finalizar Tratamiento (rojo amigable, más claro) */
+.btn-discharge {
+  background-color: #f97373 !important;
+  /* rojo más claro */
+  border-color: #f97373 !important;
+  color: #fff !important;
+}
+
+.btn-discharge:hover {
+  background-color: #ef4444 !important;
+  /* un tono más intenso al hover */
+  border-color: #ef4444 !important;
+}
+
+/* Botón de Reactivar (celeste de la app, mismo tamaño que Ver Entrevista) */
+.btn-reactivate-clinical {
+  background-color: var(--color-secondary, #5db8d1) !important;
+  border-color: var(--color-secondary, #5db8d1) !important;
+  color: #fff !important;
+}
+
+.btn-reactivate-clinical:hover {
+  background-color: #46a7c3 !important;
+  border-color: #46a7c3 !important;
+}
+
+.timeline-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  /* p-6 */
+}
+
+/* Prompts (No seleccionado, sin entrevista) */
+.timeline-prompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.timeline-prompt-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4, 1rem);
+}
+
+.timeline-prompt-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-prompt-icon.user {
+  background-color: var(--gray-100, #f3f4f6);
+}
+
+.timeline-prompt-icon.user svg {
+  width: 32px;
+  height: 32px;
+  color: var(--gray-400, #9ca3af);
+}
+
+.timeline-prompt-icon.interview {
+  background-color: rgba(227, 172, 77, 0.1);
+  /* tertiary */
+}
+
+.timeline-prompt-icon.interview svg {
+  width: 32px;
+  height: 32px;
+  color: var(--color-tertiary, #e3ac4d);
+}
+
+.timeline-prompt-content h3 {
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--gray-900, #111827);
+  margin: 0.5rem 0 0 0;
+}
+
+.timeline-prompt-content p {
+  color: var(--gray-600, #4b5563);
+  margin: 0;
+}
+
+/* Timeline Item */
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+  /* space-y-6 */
+}
+
+.timeline-item-line {
+  position: absolute;
+  left: 16px;
+  /* 4 * 4px */
+  top: 32px;
+  /* 8 * 4px */
+  bottom: 0;
+  width: 2px;
+  background-color: var(--gray-200, #e5e7eb);
+}
+
+.timeline-item:last-child .timeline-item-line {
+  display: none;
+}
+
+.timeline-item-container {
+  display: flex;
+  gap: var(--space-4, 1rem);
+}
+
+.timeline-item-indicator {
+  flex-shrink: 0;
+  width: 32px;
+  /* w-8 */
+  height: 32px;
+  /* h-8 */
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+.timeline-item-indicator.interview {
+  background-color: var(--color-tertiary, #e3ac4d);
+}
+
+.timeline-item-indicator.session {
+  background-color: var(--color-primary, #cc679c);
+}
+
+.timeline-item-indicator.discharge {
+  background-color: #ef4444;
+  /* rojo amigable */
+}
+
+.timeline-item-indicator.reactivation {
+  background-color: var(--color-secondary, #5db8d1);
+  /* celeste */
+}
+
+.timeline-item-indicator-dot {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border-radius: 9999px;
+}
+
+.timeline-item-body {
+  flex: 1;
+  background-color: var(--gray-50, #f9fafb);
+  border-radius: var(--radius-lg, 0.625rem);
+  padding: var(--space-4, 1rem);
+  position: relative;
+}
+
+
+
+.timeline-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  /* mb-3 */
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.timeline-item-meta-stack {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 1rem);
+  flex-wrap: wrap;
+}
+
+.timeline-item-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 1rem);
+  flex-wrap: wrap;
+}
+
+.timeline-item-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.timeline-item-meta-item.date {
+  color: var(--color-tertiary, #e3ac4d);
+}
+
+.timeline-item-meta-item.time {
+  color: var(--gray-600, #4b5563);
+}
+
+.timeline-item-meta-item svg {
+  width: 16px;
+  height: 16px;
+}
+
+.timeline-item-tag {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.timeline-item-tag.interview {
+  background-color: var(--color-tertiary, #e3ac4d);
+}
+
+.timeline-item-tag.session {
+  background-color: var(--color-primary, #cc679c);
+}
+
+.timeline-item-tag.discharge {
+  background-color: #ef4444;
+  /* rojo amigable */
+}
+
+.timeline-item-tag.reactivation {
+  background-color: var(--color-secondary, #5db8d1);
+  /* celeste */
+}
+
+.timeline-item-tag.recent {
+  background-color: var(--color-secondary, #5db8d1);
+}
+
+/* Badge de "Editado" - más visible y funcional en mobile */
+.badge-time-mobile {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .badge-time-mobile {
+    display: inline !important;
+  }
+}
+
+.timeline-item-edit-btn {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3b82f6;
+  background-color: transparent;
+}
+
+.timeline-item-edit-btn:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.timeline-item-edit-btn svg {
+  width: 16px;
+  height: 16px;
+  color: #3b82f6;
+}
+
+.timeline-item-edit-btn i {
+  color: #3b82f6;
+}
+
+.timeline-item-content {
+  color: var(--gray-700, #374151);
+  line-height: 1.6;
+  /* leading-relaxed */
+  white-space: pre-wrap;
+  /* Para respetar saltos de línea */
+  overflow-wrap: anywhere;
+  /* fuerza quiebres en palabras largas */
+  word-break: break-word;
+  max-width: 100%;
+  /* evita crecer más que el contenedor */
+}
+
+/* Observación de sesión: limitar alto y permitir scroll vertical sin romper el ancho */
+.timeline-session-observation {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-height: 240px;
+  overflow-y: auto;
+  max-width: 100%;
+}
+
+.timeline-item-content-interview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 0.5rem);
+}
+
+.timeline-item-content-interview .timeline-item-content-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-item-content-interview .timeline-item-content-header svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-tertiary, #e3ac4d);
+}
+
+.timeline-item-content-interview .timeline-item-content-header span {
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--gray-900, #111827);
+}
+
+.timeline-item-content-interview .timeline-item-empty-note div {
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.timeline-item-content-interview .timeline-item-empty-note strong {
+  color: var(--gray-800, #1f2937);
+}
+
+/* Estilos para modales */
+.div-dif {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title-dif {
+  width: 4px;
+  height: 16px;
+  background-color: #3b82f6;
+  border-radius: 2px;
+}
+
+.interview-modal-body {
+  background-color: #ffffff;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tarjeta de Fecha Destacada */
+.interview-date-card {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.interview-date-icon {
+  background: #f0f9ff;
+  padding: 10px;
+  border-radius: 50%;
+  color: #0ea5e9;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Contenedor de Sección sin padding (para efecto borde a borde del header) */
+.interview-section-container {
+  padding: 0 !important;
+  /* Forza quitar el padding original de .interview-section */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenido interno de la sección (recupera el padding) */
+.interview-section-content {
+  padding: 1.5rem;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Grilla Responsiva (se adapta al ancho) */
+.interview-responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* --- Componente InfoCard (Etiqueta + Caja de Valor) --- */
+.interview-info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0.65rem 0.75rem;
+}
+
+/* Etiqueta superior pequeña */
+.interview-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.age-data-patient {
+  display: block;
+  margin-top: 0.5rem !important;
+  /* margin-left: 0.9rem; */
+  font-weight: 500 !important;
+  color: #334155 !important;
+  font-size: 1rem !important;
+  /* font-size: 1.5rem; */
+}
+
+/* Caja blanca contenedora del texto */
+.interview-value-box {
+  background-color: #ffffff;
+  font-size: 0.9rem;
+  color: #334155;
+  line-height: 1.5;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  /* Asegura que ocupe el ancho del contenedor */
+}
+
+/* Modificador para scroll interno */
+.interview-value-box.scrollable {
+  max-height: 6rem;
+  overflow-y: auto;
+  align-items: flex-start;
+}
+
+/* Texto dentro de la caja (pre-wrap para saltos de línea) */
+.interview-value-text {
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+.interview-value-text {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.interview-value-placeholder {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* --- Tarjetas de Personas (Padres / Hermanos) --- */
+.interview-person-card {
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.interview-person-card.sibling {
+  padding: 0.75rem 1rem;
+  max-width: 720px;
+  width: 100%;
+  align-self: center;
+  min-height: 180px;
+  height: 100%;
+}
+
+.interview-person-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.interview-parents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.interview-person-grid-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+/* Grilla específica para fila de Hermanos */
+.interview-sibling-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Subtítulos de secciones (ej: PADRES, HERMANOS) */
+.interview-subsection-header {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.05em;
+}
+
+.interview-subsection-marker {
+  width: 4px;
+  height: 16px;
+  background-color: #3b82f6;
+  border-radius: 2px;
+}
+
+/* Helpers de Grid */
+.grid-span-all {
+  grid-column: 1 / -1;
+}
+
+.grid-col-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenedor de lista de hermanos */
+.interview-siblings-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.interview-no-siblings {
+  padding: 1rem;
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  color: #64748b;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Sección de Niveles Educativos */
+.interview-education-levels {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.interview-section {
+  background-color: #ffffff;
+  border-radius: var(--radius-lg, 0.625rem);
+  border: 1px solid var(--gray-200, #e5e7eb);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+}
+
+.interview-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: .8rem 2rem;
+  margin: -0.5rem -0.75rem;
+  border-radius: var(--radius-lg, 0.625rem) var(--radius-lg, 0.625rem) 0 0;
+  border-bottom: 1px solid var(--gray-200, #e5e7eb);
+}
+
+.interview-section-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-top: 1rem;
+  color: var(--gray-900, #111827);
+}
+
+.interview-section-header-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.interview-section-header-motivo {
+  background: linear-gradient(90deg, rgba(204, 103, 156, 0.12), rgba(93, 184, 209, 0.08));
+}
+
+.interview-section-header-personal {
+  background: linear-gradient(90deg, rgba(93, 184, 209, 0.12), rgba(227, 172, 77, 0.08));
+}
+
+.interview-section-header-familia {
+  background: linear-gradient(90deg, rgba(227, 172, 77, 0.12), rgba(204, 103, 156, 0.08));
+}
+
+.interview-section-header-antecedentes {
+  background: linear-gradient(90deg, rgba(204, 103, 156, 0.12), rgba(227, 172, 77, 0.08));
+}
+
+.interview-section-header-escolar {
+  background: linear-gradient(90deg, rgba(93, 184, 209, 0.12), rgba(204, 103, 156, 0.08));
+}
+
+.interview-section-header-psico {
+  background: linear-gradient(90deg, rgba(227, 172, 77, 0.12), rgba(93, 184, 209, 0.08));
+}
+
+.interview-section-header-motivo .interview-section-header-icon {
+  background-color: var(--color-primary, #cc679c);
+}
+
+.interview-section-header-personal .interview-section-header-icon {
+  background-color: var(--color-secondary, #5db8d1);
+}
+
+.interview-section-header-familia .interview-section-header-icon {
+  background-color: var(--color-tertiary, #e3ac4d);
+}
+
+.interview-section-header-antecedentes .interview-section-header-icon {
+  background-color: var(--color-primary, #cc679c);
+}
+
+.interview-section-header-escolar .interview-section-header-icon {
+  background-color: var(--color-secondary, #5db8d1);
+}
+
+.interview-section-header-psico .interview-section-header-icon {
+  background-color: var(--color-tertiary, #e3ac4d);
+}
+
+.interview-section h4 {
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--gray-900, #111827);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.interview-section p,
+.interview-section .form-group {
+  color: var(--gray-700, #374151);
+  margin: 0;
+  font-size: var(--font-size-sm, 0.875rem);
+  line-height: 1.5;
+}
+
+.interview-section .form-group {
+  margin-top: 0.35rem;
+}
+
+.interview-grid {
+  display: grid;
+  grid-auto-rows: minmax(0, auto);
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 0.5rem;
+}
+
+.interview-grid-1 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.interview-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.interview-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.interview-grid-span-2 {
+  grid-column: span 2;
+}
+
+/* ---------- Formulario dedicado de Primera Entrevista ---------- */
+.first-interview-form {
+  padding-right: 4px;
+}
+
+.fi-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.fi-section:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.fi-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  /* border-bottom: 1px solid #e5e7eb; */
+}
+
+.fi-section-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 650;
+  color: #111827;
+}
+
+.fi-section-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.fi-section-icon-primary {
+  background-color: var(--color-tertiary);
+}
+
+.fi-section-icon-secondary {
+  background-color: var(--color-tertiary);
+}
+
+.fi-section-icon-warning {
+  background-color: var(--color-tertiary);
+}
+
+/* Labels dentro del formulario de primera entrevista */
+.first-interview-form .form-label {
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 0.25rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+}
+
+/* Línea divisoria más marcada entre secciones principales */
+.fi-section {
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.fi-section+.fi-section {
+  margin-top: 1rem;
+}
+
+/* Botones de la sección Hermanos */
+.first-interview-form .btn-add-brother {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: #ffffff;
+}
+
+.first-interview-form .btn-add-brother:hover {
+  background-color: var(--color-secondary-hover);
+  border-color: var(--color-secondary-hover);
+  color: #ffffff;
+}
+
+.first-interview-form .btn-remove-brother {
+  border-color: #f87171;
+  /* rojo suave */
+  color: #b91c1c;
+  height: 42px;
+  /* altura aproximada de los inputs .form-control para alinear visualmente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.15rem;
+}
+
+.first-interview-form .btn-remove-brother:hover {
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+  color: #b91c1c;
+}
+
+.fi-card {
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  padding: 1rem 1.25rem;
+  background-color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.fi-card h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #111827;
+}
+
+.fi-personality-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.fi-chip {
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+.fi-chip-selected {
+  background-color: #cc679c;
+  border-color: #cc679c;
+  color: #ffffff;
+}
+
+.fi-chip-unselected {
+  background-color: #ffffff;
+  border-color: #d1d5db;
+  color: #374151;
+}
+
+.viewInterviewModal {
+  width: 1024px;
+  max-width: 100%;
+  height: 800px;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+/* ---------- Responsiveness: Primera Entrevista (vista de consulta) ---------- */
+@media (max-width: 1024px) {
+  .interview-section-content {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .interview-section-content {
+    padding: 1rem;
+  }
+
+  .interview-section-header {
+    padding: .6rem 1rem;
+  }
+
+  .interview-parents-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .interview-person-grid-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .interview-sibling-row {
+    grid-template-columns: 1fr;
+    gap: .5rem;
+  }
+
+  .interview-date-card {
+    padding: .75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .interview-section-content {
+    padding: .75rem;
+  }
+
+  .interview-section-header {
+    padding: .5rem .75rem .5rem 2rem !important;
+  }
+
+  .interview-section-header-icon {
+    height: 24px;
+    width: 24px;
+    margin-top: 0.25rem;
+  }
+
+  .interview-section-header-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .interview-responsive-grid {
+    grid-template-columns: 1fr;
+    gap: .75rem;
+  }
+
+  .interview-parents-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .interview-sibling-row {
+    grid-template-columns: 1fr;
+  }
+
+  .interview-date-card {
+    align-items: flex-start;
+    gap: .5rem;
+  }
+
+  .interview-person-card.sibling {
+    min-height: 140px;
+  }
+}
+
+/* ---- Sibling card vertical info ---- */
+.sibling-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.sibling-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sibling-info-value {
+  color: #334155;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.sibling-info-value-strong {
+  color: #0f172a;
+  font-weight: 600;
+}

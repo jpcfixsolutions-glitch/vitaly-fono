@@ -1,0 +1,1 @@
+export { ObraSocial } from "./obraSocial.jsx";

@@ -1,0 +1,585 @@
+/* Estilos basados en consultarturnoactualizado/src/components/appointment-management.tsx */
+
+/* Contenedor principal del modal (simula DialogContent) */
+.event-detail-container {
+  font-family: inherit;
+  /* Fondo blanco puro */
+  background: #ffffff;
+  border-radius: var(--radius-xl, 0.75rem);
+  /* rounded-lg */
+  padding: var(--space-1, 1rem);
+  /* p-6 */
+  border: none;
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 1rem);
+  /* space-y-4: reduce separación entre secciones */
+}
+
+/* Sección Info Paciente */
+.patient-info-section {
+  /* Fondo blanco puro */
+  background-color: #ffffff;
+  border-radius: var(--radius-xl, 0.75rem);
+  /* rounded-xl */
+  /* padding: var(--space-6, 1.5rem); p-6 */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 1.25rem);
+  /* space-y-5 */
+}
+
+.patient-header {
+  display: flex;
+  align-items: center;
+  /* Centrado vertical */
+  gap: var(--space-3, 0.75rem);
+  /* gap-3 */
+}
+
+.patient-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: 9999px;
+  /* rounded-full */
+  background: linear-gradient(to bottom right, var(--color-primary, #cc679c), #b85889);
+  /* bg-gradient-to-br */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(204, 103, 156, 0.25);
+}
+
+.patient-icon-wrapper i {
+  font-size: 18px;
+  color: white;
+}
+
+.patient-name-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.patient-name-details .label {
+  font-size: 0.8rem;
+  /* Ligeramente más grande */
+  color: var(--gray-500, #6b7280);
+  /* text-gray-500 */
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.patient-name-details .value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gray-900, #111827);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.patient-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4, 1rem);
+  padding-top: var(--space-5, 0.5rem);
+  padding-bottom: var(--space-5, 0.5rem);
+  border-top: 1px solid var(--gray-100, #f3f4f6);
+  border-bottom: 1px solid var(--gray-100, #f3f4f6);
+}
+
+/* .patient-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+} */
+
+.detail-item {
+  display: flex;
+  flex-direction: column !important;
+  align-items: center;
+}
+
+/* Contenedor de ícono para detalle de turno (ícono a la izquierda) */
+.icon-container-detail-turn {
+  width: 44px;
+  /* Más grande */
+  height: 44px;
+  border-radius: var(--radius-lg, 0.625rem);
+  /* rounded-lg */
+  margin-right: -0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.icon-container-detail-turn i {
+  font-size: 18px;
+  /* Iconos más grandes */
+}
+
+.detail-icon-bg {
+  width: 40px;
+  /* w-10 */
+  height: 40px;
+  /* h-10 */
+  border-radius: var(--radius-lg, 0.625rem);
+  /* rounded-lg */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Colores de fondo de iconos */
+.detail-icon-bg.phone {
+  background-color: rgba(93, 184, 209, 0.1);
+}
+
+/* bg-[#5db8d1]/10 */
+.detail-icon-bg.calendar {
+  background-color: rgba(227, 172, 77, 0.1);
+}
+
+/* bg-[#e3ac4d]/10 */
+.detail-icon-bg.clock {
+  background-color: rgba(168, 85, 247, 0.1);
+}
+
+/* bg-purple-50 */
+.detail-icon-bg.modality {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+/* bg-emerald-50 */
+
+.detail-icon-bg i {
+  font-size: 20px;
+  /* w-5 h-5 */
+}
+
+/* Colores de iconos */
+.detail-icon-bg.phone i {
+  color: #5db8d1;
+}
+
+.detail-icon-bg.calendar i {
+  color: #e3ac4d;
+}
+
+.detail-icon-bg.clock i {
+  color: #a855f7;
+}
+
+/* text-purple-600 */
+.detail-icon-bg.modality i {
+  color: #10b981;
+}
+
+.patient-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.patient-details-grid .detail-item {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.icon-container-detail-turn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-100);
+  color: #d97fb0;
+  flex-shrink: 0;
+}
+
+.patient-details-grid .detail-text .label {
+  margin: 0;
+  margin-left: 1rem;
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+.patient-details-grid .detail-text .value {
+  margin: 0;
+  margin-left: 1rem;
+  font-size: 14px;
+  color: var(--gray-900);
+}
+
+.patient-whatsapp-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wsp-button {
+  border-radius: var(--radius-lg, 0.625rem);
+  background-color: #25D366;
+  /* WhatsApp green */
+  border: 1px solid #25D366;
+  color: #ffffff;
+  font-size: 0.95rem;
+  /* padding: 0.6rem 1rem; */
+  font-weight: 600;
+}
+
+.wsp-button:hover {
+  background-color: #1ebe57;
+  border-color: #1ebe57;
+  color: #ffffff;
+}
+
+.wsp-button:disabled,
+.wsp-button[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.detail-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+b {
+  color: var(--gray-900, #111827);
+  font-weight: 700;
+  /* Más bold para mayor jerarquía */
+}
+
+.detail-text .label {
+  font-size: 0.7rem;
+  /* Más pequeño para diferenciar */
+  color: var(--gray-500, #6b7280);
+  /* text-gray-500 */
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.detail-text .value {
+  font-size: 1rem;
+  /* Más grande para mejor legibilidad */
+  font-weight: 600;
+  /* Más bold */
+  color: var(--gray-900, #111827);
+  /* text-gray-900 */
+  margin: 0;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* truncate */
+}
+
+.modality-badge {
+  display: inline-flex;
+  /* inline-flex */
+  align-items: center;
+  padding: 2px 10px;
+  /* px-2.5 py-1 */
+  border-radius: var(--radius-md, 0.5rem);
+  /* rounded-md */
+  font-size: var(--font-size-xs, 0.75rem);
+  /* text-xs */
+  font-weight: var(--font-weight-medium, 500);
+  /* font-medium */
+  text-transform: capitalize;
+}
+
+.modality-badge.virtual {
+  background-color: var(--color-blue-100, #dbeafe);
+  /* bg-blue-100 */
+  color: var(--color-blue-700, #1d4ed8);
+  /* text-blue-800 */
+}
+
+.modality-badge.presencial {
+  background-color: var(--color-green-100, #d1fae5);
+  /* bg-green-100 */
+  color: var(--color-green-700, #047857);
+  /* text-green-800 */
+}
+
+/* Sección Estado del Turno */
+.status-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 0.75rem);
+  /* space-y-3 */
+}
+
+/* Wrapper para badge + select del estado actual */
+.status-display-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-3, 0.75rem);
+  row-gap: 4px;
+  align-items: start;
+}
+
+.status-current-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status-select-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status-select-label {
+  font-size: 0.7rem;
+  color: var(--gray-500, #6b7280);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+/* Badge del estado actual */
+.status-badge-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 10px 16px;
+  border-radius: var(--radius-md, 0.5rem);
+  font-size: 1rem;
+  /* Más grande */
+  font-weight: 700;
+  /* Más bold */
+  min-height: 44px;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.status-badge-display i {
+  font-size: 18px;
+}
+
+/* Colores por estado para el badge */
+.status-badge-display.activo {
+  background-color: #dbeafe;
+  /* blue-100 */
+  color: #1d4ed8;
+  /* blue-700/800 */
+}
+
+.status-badge-display.confirmado {
+  background-color: #d1fae5;
+  /* green-100 */
+  color: #047857;
+  /* green-700 */
+}
+
+.status-badge-display.pendiente {
+  background-color: #ffedd5;
+  /* orange-100 */
+  color: #c2410c;
+  /* orange-700 */
+}
+
+.status-badge-display.cancelado {
+  background-color: #fee2e2;
+  /* red-100 */
+  color: #b91c1c;
+  /* red-700 */
+}
+
+/* Select del estado */
+.status-select-control {
+  min-width: 180px;
+  min-height: 44px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* En móvil, apilar en una sola columna */
+@media (max-width: 576px) {
+  .status-display-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+.status-label {
+  font-size: 1.05rem;
+  /* Más grande para jerarquía */
+  font-weight: 600;
+  /* Más bold */
+  color: var(--gray-900, #111827);
+  /* Más oscuro */
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.status-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* grid-cols-2 */
+  gap: var(--space-3, 0.75rem);
+  /* gap-3 */
+}
+
+.status-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 0.75rem);
+  /* gap-3 */
+  padding: var(--space-4, 1rem);
+  /* p-4 */
+  border: 2px solid var(--gray-200, #e5e7eb);
+  /* border-2 */
+  border-radius: var(--radius-lg, 0.625rem);
+  /* rounded-lg */
+  background-color: white;
+  /* bg-white */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-align: left;
+}
+
+.status-button:hover {
+  border-color: var(--gray-300, #d1d5db);
+  /* hover:border-gray-300 */
+}
+
+.status-button.selected {
+  background-color: var(--gray-50, #f9fafb);
+  /* bg-gray-50 */
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  /* shadow-sm */
+}
+
+/* Colores específicos de borde para selección */
+.status-button.selected.activo {
+  border-color: #3b82f6;
+}
+
+/* border-blue-500 */
+.status-button.selected.confirmado {
+  border-color: #16a34a;
+}
+
+/* border-green-500 */
+.status-button.selected.pendiente {
+  border-color: #ea580c;
+}
+
+/* border-orange-500 */
+.status-button.selected.cancelado {
+  border-color: #dc2626;
+}
+
+/* border-red-500 */
+
+.status-icon {
+  width: 20px;
+  /* w-5 */
+  height: 20px;
+  /* h-5 */
+  flex-shrink: 0;
+}
+
+/* Colores de iconos de estado */
+.status-icon.activo {
+  color: #2563eb;
+}
+
+/* text-blue-600 */
+.status-icon.confirmado {
+  color: #16a34a;
+}
+
+/* text-green-600 */
+.status-icon.pendiente {
+  color: #ea580c;
+}
+
+/* text-orange-600 */
+.status-icon.cancelado {
+  color: #dc2626;
+}
+
+/* text-red-600 */
+/* Icono no seleccionado */
+.status-icon.unselected {
+  color: var(--gray-400, #9ca3af);
+}
+
+.status-text .title {
+  font-size: var(--font-size-sm, 0.875rem);
+  /* text-sm */
+  font-weight: var(--font-weight-medium, 500);
+  /* font-medium */
+  color: var(--gray-900, #111827);
+  /* text-gray-900 */
+  margin: 0;
+}
+
+.status-button.selected .status-text .title {
+  font-weight: var(--font-weight-semibold, 600);
+  /* font-semibold */
+}
+
+/* Colores específicos de texto para selección */
+.status-button.selected.activo .status-text .title {
+  color: #1d4ed8;
+}
+
+/* text-blue-800 */
+.status-button.selected.confirmado .status-text .title {
+  color: #065f46;
+}
+
+/* text-green-800 */
+.status-button.selected.pendiente .status-text .title {
+  color: #c2410c;
+}
+
+/* text-orange-800 */
+.status-button.selected.cancelado .status-text .title {
+  color: #b91c1c;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .status-buttons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .icon-container-detail-turn {
+    display: flex;
+    justify-content: center;
+  }
+
+  .status-current-group {
+    margin-bottom: 10px;
+  }
+}

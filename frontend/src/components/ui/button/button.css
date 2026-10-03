@@ -1,0 +1,159 @@
+.table-body-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 6px;
+}
+
+.button-icon {
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  background-color: transparent;
+  border: 1px solid transparent;
+
+  transition: all 0.3s ease;
+}
+
+.button-icon i {
+  color: var(--gray-700);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 10px;
+  height: 10px;
+
+  transition: all 0.3s ease;
+}
+
+.button-icon:hover {
+  border: 1px solid transparent;
+  background-color: var(--gray-50);
+
+  transition: all 0.3s ease;
+}
+
+.button-icon:focus {
+  outline: none;
+}
+
+/* Color distintivo para reactivar */
+
+.btn-reactivate,
+.btn-deactivate,
+.btn-delete,
+.btn-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  width: 35px;
+  height: 35px;
+
+  padding: .35rem;
+
+  background-color: transparent;
+  border: 1px solid transparent;
+
+  transition: all 0.3s ease;
+}
+
+.btn-info {
+  width: 40px;
+  height: 40px;
+  padding: .5rem;
+}
+
+.btn-delete {
+  padding: .5rem;
+}
+
+.btn-reactivate:hover,
+.btn-delete:hover,
+.btn-deactivate:hover,
+.btn-info:hover {
+  border: 1px solid transparent;
+  background-color: var(--gray-50);
+
+  transition: all 0.3s ease;
+}
+
+.action-btn--reactivate svg,
+.btn-reactivate svg {
+  color: #10b981 !important;
+}
+
+.action-btn--reactivate:hover svg,
+.btn-reactivate:hover svg {
+  color: #34d399 !important;
+}
+
+/* Color distintivo para dar de baja */
+.action-btn--deactivate svg,
+.btn-deactivate svg,
+.action-btn--delete svg,
+.btn-delete svg {
+  color: #ef4444 !important;
+}
+
+.action-btn--deactivate:hover svg,
+.action-btn--delete:hover svg,
+.btn-deactivate:hover svg,
+.btn-delete:hover svg {
+  color: #dc2626 !important;
+}
+
+/* Estado deshabilitado para botones de acción */
+.btn-deactivate:disabled,
+.btn-deactivate[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn-deactivate:disabled svg,
+.btn-deactivate[disabled] svg {
+  color: #fca5a5 !important;
+  /* rojo más suave */
+}
+
+/* Color distintivo para ver/Info (Celeste) */
+.action-btn--info svg,
+.btn-info svg {
+  color: #5db8d1 !important;
+}
+
+.action-btn--info:hover svg,
+.btn-info:hover svg {
+  color: #4aa4bd !important;
+}
+
+/* Color distintivo para Historia Clínica (Amarillo) */
+.action-btn--history svg,
+.btn-history svg {
+  color: var(--color-tertiary, #e3ac4d) !important;
+}
+
+.action-btn--history:hover svg,
+.btn-history:hover svg {
+  color: var(--color-tertiary, #e3ac4d) !important;
+}
+
+/* Color distintivo para cambiar contraseña */
+.action-btn--change-password svg,
+.btn-change-password svg {
+  color: #8b5cf6 !important;
+}
+
+.action-btn--change-password:hover svg,
+.btn-change-password:hover svg {
+  color: #a78bfa !important;
+}

@@ -1,0 +1,43 @@
+.header-role {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: linear-gradient(135deg,
+      rgba(204, 103, 156, 0.1) 0%,
+      rgba(93, 184, 209, 0.1) 100%);
+  border-radius: var(--radius-lg);
+}
+
+.header-role-icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.header-role-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header-role-name {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--gray-900);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.header-role-position {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-600);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .header-role {
+    display: none;
+  }
+}

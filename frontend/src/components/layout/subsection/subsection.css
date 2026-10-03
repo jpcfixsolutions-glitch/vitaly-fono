@@ -1,0 +1,32 @@
+.subsection {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.subsection-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.subsection-description {
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: var(--gray-900);
+}
+
+/* Media queries */
+/* Mobile */
+@media (width <=768px) {
+  .subsection {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .subsection-title {
+    font-size: 1.25rem;
+  }
+
+  .subsection-description {
+    font-size: 1rem;
+  }
+}

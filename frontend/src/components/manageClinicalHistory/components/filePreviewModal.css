@@ -1,0 +1,58 @@
+.preview-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85); /* Un poco más oscuro */
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+
+  margin-top: 0;
+}
+
+.preview-content {
+  width: 90%;
+  max-width: 70vw; /* Ancho máximo limitado */
+  height: 85vh; /* Alto máximo limitado */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent; /* El contenido en sí no tiene fondo, solo los hijos */
+}
+
+.close-preview-btn {
+  /* ... se mantiene o se usa el botón dentro del header ... */
+  display: none; /* Ocultamos este si usamos el del header */
+}
+
+.preview-body {
+  width: 100%;
+  flex: 1; /* Ocupa el resto del espacio disponible en preview-content */
+  overflow: auto; /* Scroll si el contenido es más grande */
+  background-color: #343a40; /* Fondo oscuro para resaltar la imagen */
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinear arriba para scrollear hacia abajo */
+}
+
+.preview-image {
+  max-width: 100%; /* Se ajusta al ancho */
+  height: auto; /* Altura automática */
+  display: block;
+  object-fit: contain; /* Por si acaso */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.preview-iframe {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border: none;
+  border-radius: 4px;
+}

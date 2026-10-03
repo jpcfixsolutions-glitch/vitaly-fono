@@ -1,0 +1,46 @@
+.header-menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 100%;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--gray-900);
+  padding: 0;
+}
+
+.header-menu-button:hover {
+  background: var(--gray-50);
+  color: var(--gray-900);
+}
+
+.header-menu-button:focus {
+  outline: none;
+}
+
+.header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+  color: var(--gray-700);
+}
+
+.header-menu-button:hover .header-icon {
+  color: var(--color-secondary);
+}
+
+/* Desktop: Mostrar botón hamburguesa */
+@media (min-width: 769px) {
+  .header-menu-button {
+    display: flex;
+  }
+}

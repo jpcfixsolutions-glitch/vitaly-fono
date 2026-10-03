@@ -1,0 +1,161 @@
+.form p {
+  margin-bottom: 0;
+}
+
+.form-group span {
+  font-size: var(--font-size-sm);
+  color: var(--error);
+}
+
+/* Asterisco de campos requeridos en cualquier label de formulario */
+label .required-asterisk {
+  color: var(--error);
+  margin-left: 2px;
+}
+
+.form-group {
+  margin-bottom: var(--space-2);
+}
+
+#createPaymentMethodModal .form-group,
+#updatePaymentMethodModal .form-group,
+#deactivatePaymentMethodModal .form-group {
+  margin-bottom: 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem !important;
+}
+
+.form-group input {
+  margin-bottom: .15rem !important;
+}
+
+/* ChoiceCheckboxes styles */
+.choice-checkboxes .choice-item {
+  display: inline-flex;
+  align-items: center;
+  margin-right: var(--space-4);
+  cursor: pointer;
+  user-select: none;
+}
+
+.choice-checkboxes .choice-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  margin-right: .35rem;
+  outline: none;
+  cursor: pointer;
+  background: #fff;
+}
+
+.choice-checkboxes .choice-input:checked {
+  border-color: var(--color-primary);
+  background: radial-gradient(circle at center, var(--color-primary) 55%, transparent 56%);
+}
+
+.choice-checkboxes .choice-input:focus {
+  box-shadow: 0 0 0 2px rgba(204, 103, 156, 0.25);
+}
+
+.choice-checkboxes .choice-text {
+  color: var(--gray-800);
+}
+
+.choice-checkboxes .choice-helper {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+/* MultipleCheckboxes styles */
+.multiple-checkboxes .checkboxes-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-height: 300px;
+  overflow-y: auto;
+  padding: var(--space-2);
+  border: 1px solid var(--gray-300);
+  border-radius: 4px;
+  background-color: var(--gray-50);
+}
+
+.multiple-checkboxes .checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  user-select: none;
+  padding: var(--space-1);
+  border-radius: 4px;
+  transition: background-color 0.2s;
+
+  margin-bottom: 0;
+}
+
+.multiple-checkboxes .checkbox-item:hover {
+  background-color: var(--gray-100);
+}
+
+.multiple-checkboxes .checkbox-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-primary);
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  margin-right: var(--space-2);
+  margin-top: 2px;
+  outline: none;
+  cursor: pointer;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.multiple-checkboxes .checkbox-input:checked {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+}
+
+.multiple-checkboxes .checkbox-input:checked::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.multiple-checkboxes .checkbox-input:focus {
+  box-shadow: 0 0 0 2px rgba(204, 103, 156, 0.25);
+}
+
+.multiple-checkboxes .checkbox-text {
+  color: var(--gray-800);
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+}
+
+.multiple-checkboxes .checkbox-description {
+  color: var(--gray-600);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.form-control-textarea {
+  min-height: 100px !important;
+}

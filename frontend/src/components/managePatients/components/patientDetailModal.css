@@ -1,0 +1,313 @@
+.patient-detail-modal {
+  border: none;
+  border-radius: var(--radius-lg);
+  /* Usando variable (12px = 0.75rem, pero radius-lg=0.625rem es cercano) */
+  box-shadow: var(--shadow-lg);
+  /* Usando variable */
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.patient-detail-header {
+  display: flex;
+  align-items: flex-start;
+  /* align-items: center; */
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border-bottom: none;
+  background-color: white;
+  /* Mantenido, o usar --gray-50 si se prefiere fondo off-white */
+  border-radius: 12px 12px 0 0;
+  /* No hay variable exacta para 12px, se puede crear --radius-modal */
+  position: relative;
+}
+
+.patient-detail-header__icon {
+  width: 50px;
+  height: 50px;
+  /*   width: 60px; */
+  /*   height: 60px; */
+  background-color: var(--color-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  /* Icono más grande */
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(227, 172, 77, 0.25);
+  /* Sombra elegante */
+  border-radius: 12px !important;
+
+}
+
+.patient-detail-header__content {
+  flex: 1;
+}
+
+.patient-detail-header__title {
+  margin: 0 0 4px 0;
+  /*  margin: 0 0 6px 0;  */
+  font-size: var(--font-size-lg);
+  /*   font-size: 1.4rem; */
+  font-weight: var(--font-weight-semibold);
+  /* font-weight: 700; */
+  color: var(--gray-900);
+  line-height: 1.3;
+}
+
+.patient-detail-header__subtitle {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  /*   font-size: 0.95rem; */
+  color: var(--gray-500);
+  font-weight: 400;
+}
+
+.btn-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  opacity: 0.6;
+  font-size: 24px;
+}
+
+.btn-close:hover {
+  opacity: 1;
+}
+
+.patient-detail-body {
+  padding: var(--space-6);
+  /* 24px */
+  max-height: 70vh;
+  overflow-y: auto;
+  background-color: white;
+}
+
+/* Scrollbar personalizado */
+.patient-detail-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.patient-detail-body::-webkit-scrollbar-track {
+  background: var(--gray-100);
+}
+
+.patient-detail-body::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 3px;
+}
+
+.detail-section {
+  margin-bottom: 28px;
+}
+
+.detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.detail-section__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: var(--space-4);
+  padding-bottom: 14px;
+}
+
+.detail-section__header i {
+  font-size: 20px;
+  width: 24px;
+  text-align: center;
+}
+
+.detail-section__header h6 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.detail-section:nth-child(1) .detail-section__header {
+  border-bottom: 2.4px solid #d97fb0;
+  padding-bottom: 14px;
+}
+
+.detail-section:nth-child(1) .detail-section__header i {
+  color: #d97fb0;
+}
+
+/* Color para Información de Contacto (Celestito) - ALINEADO A FIGMA */
+.detail-section:nth-child(2) .detail-section__header {
+  /* border-top: 2.4px solid #17a2b8; */
+  padding-top: 14px;
+  border-bottom: 2.4px solid #17a2b8;
+}
+
+.detail-section:nth-child(2) .detail-section__header i {
+  color: #17a2b8;
+}
+
+/* Color para Cobertura Médica (Amarillito) - ALINEADO A FIGMA */
+.detail-section:nth-child(3) .detail-section__header {
+  border-bottom: 2.4px solid #e5b96d;
+  padding-top: 14px;
+  /* border-top: 2.4px solid #e5b96d; */
+}
+
+.detail-section:nth-child(3) .detail-section__header i {
+  color: #e5b96d;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  row-gap: 20px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+}
+
+.detail-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.detail-item label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  margin-bottom: 0;
+  letter-spacing: 0.8px;
+}
+
+.detail-item p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--gray-800);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 700;
+  width: fit-content;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.status-active {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+
+  background-color: var(--success-bg);
+  color: var(--success-text) !important;
+  font-size: 0.9rem !important;
+}
+
+.status-inactive {
+  background-color: var(--error-bg);
+  color: rgb(223, 52, 52) !important;
+  font-size: 0.9rem !important;
+}
+
+.patient-detail-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--gray-100);
+  /* ANTES: #f0f0f0 */
+  background-color: white;
+  border-radius: 0 0 12px 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.patient-detail-footer .btn {
+  border-radius: var(--radius-sm);
+  /* 6px */
+  font-weight: var(--font-weight-medium);
+  /* 500 */
+  padding: 8px 16px;
+  font-size: var(--font-size-sm);
+  /* 14px */
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+
+  .patient-detail-header div:nth-child(1) {}
+
+  .patient-detail-header__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .patient-detail-header__icon i {
+    font-size: 24px;
+  }
+
+  .patient-detail-body {
+    max-height: 60vh;
+    padding: 16px;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    row-gap: 16px;
+  }
+
+  .detail-item.full-width {
+    grid-column: 1;
+  }
+
+  .detail-section {
+    margin-bottom: 20px;
+  }
+
+  .patient-detail-header__title {
+    font-size: 1.2rem;
+    /* Más grande que antes */
+  }
+
+  .patient-detail-header__subtitle {
+    font-size: 0.85rem;
+  }
+
+  .detail-section__header h6 {
+    font-size: 0.95rem;
+    /* Más grande que antes */
+  }
+
+  .detail-section__header i {
+    font-size: 18px;
+  }
+
+  .detail-item label {
+    font-size: 0.65rem;
+  }
+
+  .detail-item p {
+    font-size: 0.95rem;
+    /* Más grande que antes */
+  }
+
+  .status-badge {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+}
