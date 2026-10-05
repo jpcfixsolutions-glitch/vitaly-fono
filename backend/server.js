@@ -63,8 +63,10 @@ app.use("/api/v1/madres", motherRoutes);
 app.use("/api/v1/cierre-tratamientos", patientDischargeRoutes);
 app.use("/api/v1/archivos", archiveAttachmentRoutes);
 
-app.listen(config.port, '0.0.0.0', () => {
-    console.log(`Servidor levantado en http://localhost:${config.port}/`);
-});
+if (!process.env.VERCEL) {
+    app.listen(config.port, '0.0.0.0', () => {
+        console.log(`Servidor levantado en http://localhost:${config.port}/`);
+    });
+}
 
 export default app;
