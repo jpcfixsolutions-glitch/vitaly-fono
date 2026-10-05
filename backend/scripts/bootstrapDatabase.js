@@ -6,9 +6,7 @@ import { createClient } from "@libsql/client";
 const { URL_DB, TOKEN_DB, ADMIN_EMAIL, ADMIN_PASSWORD, ADMIN_NAME, ADMIN_LAST_NAME } = process.env;
 
 if (!URL_DB) throw new Error("Falta URL_DB en el entorno.");
-if (!ADMIN_EMAIL || !ADMIN_PASSWORD) {
-  throw new Error("Definí ADMIN_EMAIL y ADMIN_PASSWORD para crear el administrador inicial.");
-}
+const hasAdminCredentials = Boolean(ADMIN_EMAIL && ADMIN_PASSWORD);
 
 const client = createClient({ url: URL_DB, authToken: TOKEN_DB });
 const now = new Date().toISOString();
@@ -53,9 +51,17 @@ const privileges = [
 
 const administratorPrivileges = [
   "Gestión de Usuarios",
-  "Gestión de Roles",
-  "Configuración"
+  "Gestión de Roles"
 ];
+
+const speechTherapistRole = {
+  name: "Fonoaudiólogo/a",
+  description: "Acceso a todas las funcionalidades clínicas y operativas del sistema"
+};
+
+const speechTherapistPrivileges = privileges.filter(
+  (name) => !["Gestión de Usuarios", "Gestión de Roles"].includes(name)
+);
 
 await client.batch(schema, "write");
 
@@ -102,10 +108,53 @@ for (const privilegeId of administratorPrivilegeIds) {
   });
 }
 
-const normalizedEmail = ADMIN_EMAIL.trim().toLowerCase();
-let adminUser = await findOne("SELECT id FROM Usuario WHERE email = ? LIMIT 1", [normalizedEmail]);
+let speechTherapistRoleRecord = await findOne(
+  "SELECT id FROM rol WHERE lower(nombre) = lower(?) LIMIT 1",
+  [speechTherapistRole.name]
+);
+
+if (!speechTherapistRoleRecord) {
+  speechTherapistRoleRecord = { id: crypto.randomUUID() };
+  await client.execute({
+    sql: "INSERT INTO rol (id, nombre, descripcion, estado, creado_en, actualizado_en) VALUES (?, ?, ?, ?, ?, ?)",
+    args: [
+      speechTherapistRoleRecord.id,
+      speechTherapistRole.name,
+      speechTherapistRole.description,
+      "Activo",
+      now,
+      now
+    ]
+  });
+}
+
+const speechTherapistPrivilegeIds = speechTherapistPrivileges.map((name) => privilegeIdsByName.get(name));
+const speechTherapistPlaceholders = speechTherapistPrivilegeIds.map(() => "?").join(", ");
+
+await client.execute({
+  sql: `DELETE FROM rol_privilegio WHERE id_rol = ? AND id_privilegio NOT IN (${speechTherapistPlaceholders})`,
+  args: [speechTherapistRoleRecord.id, ...speechTherapistPrivilegeIds]
+});
+
+for (const privilegeId of speechTherapistPrivilegeIds) {
+  await client.execute({
+    sql: "INSERT OR IGNORE INTO rol_privilegio (id_rol, id_privilegio, creado_en) VALUES (?, ?, ?)",
+    args: [speechTherapistRoleRecord.id, privilegeId, now]
+  });
+}
+
+const normalizedEmail = hasAdminCredentials ? ADMIN_EMAIL.trim().toLowerCase() : null;
+let adminUser = normalizedEmail
+  ? await findOne("SELECT id FROM Usuario WHERE email = ? LIMIT 1", [normalizedEmail])
+  : await findOne(
+      "SELECT Usuario.id FROM Usuario INNER JOIN rol ON Usuario.id_rol = rol.id WHERE lower(rol.nombre) = lower(?) LIMIT 1",
+      ["Administrador"]
+    );
 let created = false;
 if (!adminUser) {
+  if (!hasAdminCredentials) {
+    throw new Error("Definí ADMIN_EMAIL y ADMIN_PASSWORD para crear el administrador inicial.");
+  }
   adminUser = { id: crypto.randomUUID() };
   const passwordHash = await bcrypt.hash(ADMIN_PASSWORD, 10);
   await client.execute({
@@ -113,6 +162,18 @@ if (!adminUser) {
     args: [adminUser.id, adminRole.id, ADMIN_NAME?.trim() || "Administrador", ADMIN_LAST_NAME?.trim() || "Vitaly", normalizedEmail, passwordHash, "Activo", now, now]
   });
   created = true;
+}
+
+const dniDocumentType = await findOne(
+  "SELECT id FROM TipoDocumento WHERE lower(nombre) = lower(?) LIMIT 1",
+  ["DNI"]
+);
+
+if (!dniDocumentType) {
+  await client.execute({
+    sql: "INSERT INTO TipoDocumento (id, nombre, estado, id_usuario, creado_en, actualizado_en) VALUES (?, ?, ?, ?, ?, ?)",
+    args: [crypto.randomUUID(), "DNI", "Activo", adminUser.id, now, now]
+  });
 }
 
 console.log(JSON.stringify({ initialized: true, administratorCreated: created, email: normalizedEmail }));

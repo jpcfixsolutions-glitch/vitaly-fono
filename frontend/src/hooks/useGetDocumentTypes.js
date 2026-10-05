@@ -13,7 +13,12 @@ export const useGetDocumentTypes = () => {
 
   useEffect(() => {
     if (data) {
-      setDocumentTypes(data);
+      setDocumentTypes({
+        ...data,
+        data: Array.isArray(data.data)
+          ? data.data.filter((documentType) => documentType.status === "Activo")
+          : []
+      });
       setIsLoading(false);
     }
   }, [data]);

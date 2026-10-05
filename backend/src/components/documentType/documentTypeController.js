@@ -50,7 +50,21 @@ const createDocumentType = async (req, res) => {
   }
 }
 
+const deactivateDocumentType = async (req, res) => {
+  try {
+    const documentType = await documentTypeService.getDocumentTypeById(req.params.id);
+    if (!documentType) return sendError(res, 404, "No se encontró el tipo de documento", []);
+    if (documentType.status === "Inactivo") return sendError(res, 400, "El tipo de documento ya se encuentra inactivo", []);
+
+    await documentTypeService.deactivateDocumentType(req.params.id);
+    return sendSuccess(res, "Tipo de documento dado de baja correctamente", []);
+  } catch (error) {
+    return handleControllerError(res, error);
+  }
+}
+
 export const documentTypeController = {
   getAllDocumentTypes,
-  createDocumentType
+  createDocumentType,
+  deactivateDocumentType
 }

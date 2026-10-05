@@ -4,6 +4,21 @@ import { MessageInactive } from '../../ui/inactive/MessageInactive';
 import '../managePatients.css';
 import { transformPatientInitialValues } from '../utils/transformInitialValues';
 
+const getDocumentNumberRules = (documentTypes, documentTypeId) => {
+  const selectedType = documentTypes.find((type) => type.value === documentTypeId);
+
+  if (selectedType?.label?.toUpperCase() === 'DNI') {
+    return {
+      required: 'El número de documento es requerido.',
+      minLength: { value: 7, message: 'El DNI debe tener entre 7 y 8 números.' },
+      maxLength: { value: 8, message: 'El DNI no puede tener más de 8 números.' },
+      pattern: { value: /^\d+$/, message: 'El DNI solo puede contener números.' }
+    };
+  }
+
+  return { required: 'El número de documento es requerido.' };
+};
+
 /**
  * Componente de formulario para pacientes
  */
@@ -42,7 +57,7 @@ export const FormPatient = ({
       initialValues={transformedInitialValues}
       disabled={disabled}
     >
-      {({ control, errors }) => (
+      {({ control, errors, watch }) => (
         <>
           {isInactive && (
             <MessageInactive message="No se puede modificar la información del paciente debido a que se encuentra en estado 'Inactivo'" />
@@ -98,7 +113,7 @@ export const FormPatient = ({
             errors={errors}
             disabled={isInactive || disabled}
             type="text"
-            rules={{ required: "El número de documento es requerido.", minLength: { value: 8, message: "Mínimo 8 caracteres." } }}
+            rules={getDocumentNumberRules(documentTypes, watch('id_document_type'))}
           />
           <Input
             name="phone"

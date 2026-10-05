@@ -61,8 +61,21 @@ const createDocumentType = async (data) => {
   }
 }
 
+const deactivateDocumentType = async (id) => {
+  try {
+    return await db.update(documentType)
+      .set({ status: "Inactivo", updated_at: new Date().toISOString() })
+      .where(eq(documentType.id, id))
+      .returning()
+      .get();
+  } catch (error) {
+    throw new AppError("Error al dar de baja el tipo de documento", 500, []);
+  }
+}
+
 export const documentTypeService = {
   getAllDocumentTypes,
   createDocumentType,
-  getDocumentTypeById
+  getDocumentTypeById,
+  deactivateDocumentType
 }

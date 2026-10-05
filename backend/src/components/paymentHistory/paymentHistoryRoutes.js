@@ -5,9 +5,9 @@ import { role } from "../../middlewares/role.js";
 
 const router = Router();
 
-router.get("/", auth, role(["Psicólogo/a"]), paymentHistoryController.getAllPaymentHistory);
-router.get("/:id", auth, role(["Psicólogo/a"]), paymentHistoryController.getPaymentHistoryById);
-router.post("/", auth, role(["Psicólogo/a"]), paymentHistoryController.createPaymentHistory);
-router.delete("/:id", auth, role(["Psicólogo/a"]), paymentHistoryController.deactivatePaymentHistory);
+router.get("/", auth, role(["Fonoaudiólogo/a"]), paymentHistoryController.getAllPaymentHistory);
+router.get("/:id", auth, role(["Fonoaudiólogo/a"]), paymentHistoryController.getPaymentHistoryById);
+router.post("/", auth, role(["Fonoaudiólogo/a"]), paymentHistoryController.createPaymentHistory);
+router.delete("/:id", auth, role(["Fonoaudiólogo/a"]), paymentHistoryController.deactivatePaymentHistory);
 
 export const paymentHistoryRoutes = router;

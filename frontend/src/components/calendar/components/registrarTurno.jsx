@@ -3,6 +3,21 @@ import { PatientNameAutocomplete } from "../../autocomplete";
 import "./registrarTurno.css";
 import { InfoIcon } from "lucide-react";
 
+const getDocumentNumberRules = (documentTypes, documentTypeId) => {
+  const selectedType = documentTypes.find((type) => type.value === documentTypeId);
+
+  if (selectedType?.label?.toUpperCase() === "DNI") {
+    return {
+      required: "El número de documento es requerido.",
+      minLength: { value: 7, message: "El DNI debe tener entre 7 y 8 números." },
+      maxLength: { value: 8, message: "El DNI no puede tener más de 8 números." },
+      pattern: { value: /^\d+$/, message: "El DNI solo puede contener números." }
+    };
+  }
+
+  return { required: "El número de documento es requerido." };
+};
+
 const RegistrarTurnoForm = ({
   idModal,
   formId,
@@ -77,7 +92,7 @@ const RegistrarTurnoForm = ({
               control={control}
               errors={errors}
               type="text"
-              rules={{ required: "El número de documento es requerido.", minLength: { value: 7, message: "Mínimo 7 caracteres." } }}
+              rules={getDocumentNumberRules(documentTypes, watch("id_document_type"))}
               placeholder="Ej: 30123456"
             />
             <Input

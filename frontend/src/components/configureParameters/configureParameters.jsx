@@ -1,7 +1,7 @@
 import { Settings as SettingsIcon } from 'lucide-react';
 import { Section } from "../layout/section";
 import { Container } from "../layout/container";
-import { PaymentMethod, ObraSocial, TypeService, ConfigureTimetable } from "../";
+import { PaymentMethod, ObraSocial, TypeService, DocumentType, ConfigureTimetable } from "../";
 import { useScrollToHash } from "../../hooks";
 
 import './configureParameters.css';
@@ -24,6 +24,9 @@ export const ConfigureParameters = () => {
             </div>
             <div className="functionality-container-functions-item">
               <ObraSocial />
+            </div>
+            <div className="functionality-container-functions-item">
+              <DocumentType />
             </div>
           </div>
 

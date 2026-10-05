@@ -5,9 +5,9 @@ import { role } from "../../middlewares/role.js";
 
 const router = Router();
 
-router.get("/", auth, role(["Psicólogo/a"]), cohabitantController.getAllCohabitants);
-router.get("/:id", auth, role(["Psicólogo/a"]), cohabitantController.getCohabitantById);
-router.post("/", auth, role(["Psicólogo/a"]), cohabitantController.createCohabitant);
-router.patch("/:id", auth, role(["Psicólogo/a"]), cohabitantController.updateCohabitant);
+router.get("/", auth, role(["Fonoaudiólogo/a"]), cohabitantController.getAllCohabitants);
+router.get("/:id", auth, role(["Fonoaudiólogo/a"]), cohabitantController.getCohabitantById);
+router.post("/", auth, role(["Fonoaudiólogo/a"]), cohabitantController.createCohabitant);
+router.patch("/:id", auth, role(["Fonoaudiólogo/a"]), cohabitantController.updateCohabitant);
 
 export const cohabitantRoutes = router;

@@ -5,10 +5,10 @@ import { role } from "../../middlewares/role.js";
 
 const router = Router();
 
-router.get("/", auth, role(["Psicólogo/a", "Recepción"]), turnController.getAllTurns);
-router.get("/:id", auth, role(["Psicólogo/a", "Recepción"]), turnController.getTurnById);
-router.post("/", auth, role(["Psicólogo/a", "Recepción"]), turnController.createTurn);
-router.patch("/:id", auth, role(["Psicólogo/a", "Recepción"]), turnController.updateTurn);
-router.delete("/:id", auth, role(["Psicólogo/a", "Recepción"]), turnController.deleteTurn);
+router.get("/", auth, role(["Fonoaudiólogo/a", "Recepción"]), turnController.getAllTurns);
+router.get("/:id", auth, role(["Fonoaudiólogo/a", "Recepción"]), turnController.getTurnById);
+router.post("/", auth, role(["Fonoaudiólogo/a", "Recepción"]), turnController.createTurn);
+router.patch("/:id", auth, role(["Fonoaudiólogo/a", "Recepción"]), turnController.updateTurn);
+router.delete("/:id", auth, role(["Fonoaudiólogo/a", "Recepción"]), turnController.deleteTurn);
 
 export const turnRoutes = router;

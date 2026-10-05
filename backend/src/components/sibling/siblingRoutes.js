@@ -5,10 +5,10 @@ import { role } from "../../middlewares/role.js";
 
 const router = Router();
 
-router.get("/", auth, role(["Psicólogo/a"]), siblingController.getAllSiblings);
-router.get("/:id", auth, role(["Psicólogo/a"]), siblingController.getSiblingById);
-router.post("/", auth, role(["Psicólogo/a"]), siblingController.createSibling);
-router.patch("/:id", auth, role(["Psicólogo/a"]), siblingController.updateSibling);
-router.delete("/:id", auth, role(["Psicólogo/a"]), siblingController.deleteSibling);
+router.get("/", auth, role(["Fonoaudiólogo/a"]), siblingController.getAllSiblings);
+router.get("/:id", auth, role(["Fonoaudiólogo/a"]), siblingController.getSiblingById);
+router.post("/", auth, role(["Fonoaudiólogo/a"]), siblingController.createSibling);
+router.patch("/:id", auth, role(["Fonoaudiólogo/a"]), siblingController.updateSibling);
+router.delete("/:id", auth, role(["Fonoaudiólogo/a"]), siblingController.deleteSibling);
 
 export const siblingRoutes = router;

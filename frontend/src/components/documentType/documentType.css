@@ -1,0 +1,9 @@
+.btn-document-type {
+  background-color: var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.btn-document-type:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}

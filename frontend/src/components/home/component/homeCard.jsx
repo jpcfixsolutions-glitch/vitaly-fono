@@ -1,5 +1,3 @@
-import boavidaLogo from '../../../assets/boavida-logo.PNG';
-
 import './homeCard.css';
 
 export const HomeCard = ({ userName }) => {
@@ -7,9 +5,6 @@ export const HomeCard = ({ userName }) => {
     <>
       <div className="home-card">
         <div className="home-card-body">
-          <div className="home-card-logo">
-            <img src={boavidaLogo} alt="Boavida Logo" className="logo-image" />
-          </div>
           <div>
             <h3 className="home-card-title">¡Bienvenid@ {userName} a Vitaly!</h3>
             <p className="home-card-text">

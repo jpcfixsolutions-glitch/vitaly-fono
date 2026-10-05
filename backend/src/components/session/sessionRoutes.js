@@ -7,12 +7,12 @@ import { upload } from "../../middlewares/upload.js";
 
 const router = Router();
 
-router.get("/", auth, role(["Psicólogo/a"]), sessionController.getAllSessions);
-router.get("/:id", auth, role(["Psicólogo/a"]), sessionController.getSessionById);
-router.post("/", auth, role(["Psicólogo/a"]), sessionController.createSession);
-router.patch("/:id", auth, role(["Psicólogo/a"]), sessionController.updateSession);
-router.post("/:id/files", auth, role(["Psicólogo/a"]), upload.single('file'), sessionController.uploadFile);
-router.get("/:id/files", auth, role(["Psicólogo/a"]), sessionController.getFilesBySession);
-router.delete("/files/:fileId", auth, role(["Psicólogo/a"]), sessionController.deleteFile);
+router.get("/", auth, role(["Fonoaudiólogo/a"]), sessionController.getAllSessions);
+router.get("/:id", auth, role(["Fonoaudiólogo/a"]), sessionController.getSessionById);
+router.post("/", auth, role(["Fonoaudiólogo/a"]), sessionController.createSession);
+router.patch("/:id", auth, role(["Fonoaudiólogo/a"]), sessionController.updateSession);
+router.post("/:id/files", auth, role(["Fonoaudiólogo/a"]), upload.single('file'), sessionController.uploadFile);
+router.get("/:id/files", auth, role(["Fonoaudiólogo/a"]), sessionController.getFilesBySession);
+router.delete("/files/:fileId", auth, role(["Fonoaudiólogo/a"]), sessionController.deleteFile);
 
 export const sessionRoutes = router;

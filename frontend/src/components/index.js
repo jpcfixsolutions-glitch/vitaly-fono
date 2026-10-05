@@ -16,6 +16,7 @@ export * from "./managePayments";
 export * from "./obraSocial";
 export * from "./paymentMethod";
 export * from "./typeServices";
+export * from "./documentType";
 export * from "./configureTimetable";
 export * from "./processData";
 export * from "./viewData";

@@ -5,9 +5,9 @@ import { role } from "../../middlewares/role.js";
 
 const router = Router();
 
-router.get("/", auth, role(["Psicólogo/a"]), adultAntecedentsAdditionalInfoController.getAllAdultAntecedents);
-router.get("/:id", auth, role(["Psicólogo/a"]), adultAntecedentsAdditionalInfoController.getAdultAntecedentsById);
-router.post("/", auth, role(["Psicólogo/a"]), adultAntecedentsAdditionalInfoController.createAdultAntecedents);
-router.patch("/:id", auth, role(["Psicólogo/a"]), adultAntecedentsAdditionalInfoController.updateAdultAntecedents);
+router.get("/", auth, role(["Fonoaudiólogo/a"]), adultAntecedentsAdditionalInfoController.getAllAdultAntecedents);
+router.get("/:id", auth, role(["Fonoaudiólogo/a"]), adultAntecedentsAdditionalInfoController.getAdultAntecedentsById);
+router.post("/", auth, role(["Fonoaudiólogo/a"]), adultAntecedentsAdditionalInfoController.createAdultAntecedents);
+router.patch("/:id", auth, role(["Fonoaudiólogo/a"]), adultAntecedentsAdditionalInfoController.updateAdultAntecedents);
 
 export const adultAntecedentsAdditionalInfoRoutes = router;

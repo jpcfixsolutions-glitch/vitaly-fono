@@ -5,10 +5,10 @@ import { role } from "../../middlewares/role.js";
 
 const router = Router();
 
-router.get("/", auth, role(["Psicólogo/a", "Recepción"]), calendarController.getAllConfigurations);
-router.get("/:id", auth, role(["Psicólogo/a", "Recepción"]), calendarController.getConfigurationById);
-router.post("/", auth, role(["Psicólogo/a"]), calendarController.createConfiguration);
-router.patch("/:id", auth, role(["Psicólogo/a"]), calendarController.updateConfiguration);
-router.delete("/:id", auth, role(["Psicólogo/a"]), calendarController.deleteConfiguration);
+router.get("/", auth, role(["Fonoaudiólogo/a", "Recepción"]), calendarController.getAllConfigurations);
+router.get("/:id", auth, role(["Fonoaudiólogo/a", "Recepción"]), calendarController.getConfigurationById);
+router.post("/", auth, role(["Fonoaudiólogo/a"]), calendarController.createConfiguration);
+router.patch("/:id", auth, role(["Fonoaudiólogo/a"]), calendarController.updateConfiguration);
+router.delete("/:id", auth, role(["Fonoaudiólogo/a"]), calendarController.deleteConfiguration);
 
 export const calendarRoutes = router;

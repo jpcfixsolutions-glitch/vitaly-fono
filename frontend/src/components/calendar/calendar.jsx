@@ -33,9 +33,9 @@ const Calendar = () => {
   });
   
   const usersList = Array.isArray(usersData?.data) ? usersData.data : [];
-  const psychologistsList = usersList.filter(u => u.role === 'Psicólogo/a');
+  const speechTherapistsList = usersList.filter(u => u.role === 'Fonoaudiólogo/a');
   const transformedUsers = transformSelectOptions(
-    psychologistsList.map(u => ({ ...u, full_name: `${u.name} ${u.last_name}` })),
+    speechTherapistsList.map(u => ({ ...u, full_name: `${u.name} ${u.last_name}` })),
     'full_name'
   );
 
